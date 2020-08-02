@@ -7,20 +7,20 @@ from aiogram.dispatcher.webhook import SendMessage, SendPhoto, EditMessageText
 from aiogram.utils.executor import start_webhook
 
 
-TOKEN = os.environ['TOKEN']
+_TOKEN = os.environ['TOKEN']
 
-WEBHOOK_HOST = 'https://reminabot.herokuapp.com'  # name your app
-WEBHOOK_PATH = '/webhook/'
-WEBHOOK_URL = f"{WEBHOOK_HOST}{WEBHOOK_PATH}"
+_WEBHOOK_HOST = 'https://reminabot.herokuapp.com'  # name your app
+_WEBHOOK_PATH = '/webhook/'
+_WEBHOOK_URL = f"{_WEBHOOK_HOST}{_WEBHOOK_PATH}"
 
-WEBAPP_HOST = '0.0.0.0'
-WEBAPP_PORT = os.environ.get('PORT')
+_WEBAPP_HOST = '0.0.0.0'
+_WEBAPP_PORT = os.environ.get('PORT')
 
 logging.basicConfig(level=logging.INFO)
 
-bot = Bot(token=TOKEN)
-dp = Dispatcher(bot)
-dp.middleware.setup(LoggingMiddleware())
+_bot = Bot(token=TOKEN)
+_dp = Dispatcher(_bot)
+_dp.middleware.setup(LoggingMiddleware())
 
 
 @dp.message_handler(commands='start')
@@ -34,22 +34,22 @@ async def echo(message: types.Message):
 
 
 async def on_startup(dp):
-    await bot.set_webhook(WEBHOOK_URL)
+    await _bot.set_webhook(_WEBHOOK_URL)
 
 
 async def on_shutdown(dp):
     logging.warning('Shutting down..')
     # insert code here to run it before shutdown
-    await bot.delete_webhook()
+    await _bot.delete_webhook()
 
     # Close DB connection (if used)
-    await dp.storage.close()
-    await dp.storage.wait_closed()
+    await _dp.storage.close()
+    await _dp.storage.wait_closed()
 
     logging.warning('Bye!')
 
 
 if __name__ == '__main__':
-    start_webhook(dispatcher=dp, webhook_path=WEBHOOK_PATH,
+    start_webhook(dispatcher=_dp, webhook_path=_WEBHOOK_PATH,
                   on_startup=on_startup, on_shutdown=on_shutdown,
-                  host=WEBAPP_HOST, port=WEBAPP_PORT)
+                  host=_WEBAPP_HOST, port=_WEBAPP_PORT)
