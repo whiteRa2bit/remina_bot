@@ -1,1 +1,1 @@
-web: python organizer_bot/bot.py
+web: python remina_bot/bot.py
