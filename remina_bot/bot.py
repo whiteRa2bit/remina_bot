@@ -18,7 +18,7 @@ _WEBAPP_PORT = os.environ.get('PORT')
 
 logging.basicConfig(level=logging.INFO)
 
-_bot = Bot(token=TOKEN)
+_bot = Bot(token=_TOKEN)
 _dp = Dispatcher(_bot)
 _dp.middleware.setup(LoggingMiddleware())
 
