@@ -40,7 +40,7 @@ async def on_startup(dp):
 async def on_shutdown(dp):
     logging.warning('Shutting down..')
     # insert code here to run it before shutdown
-    await _bot.delete_webhook()
+    # await _bot.delete_webhook()
 
     # Close DB connection (if used)
     await dp.storage.close()
