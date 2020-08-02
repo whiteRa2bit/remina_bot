@@ -7,7 +7,7 @@ requirements = [
 ]
 
 setup(
-    name='organizer_bot',
+    name='remina_bot',
     version='0.1',
     description='Organizer Telegram Bot',
     license="Apache License 2.0",
