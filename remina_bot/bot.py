@@ -43,13 +43,13 @@ async def on_shutdown(dp):
     await _bot.delete_webhook()
 
     # Close DB connection (if used)
-    await _dp.storage.close()
-    await _dp.storage.wait_closed()
+    await dp.storage.close()
+    await dp.storage.wait_closed()
 
     logging.warning('Bye!')
 
 
 if __name__ == '__main__':
-    start_webhook(dispatcher=_dp, webhook_path=_WEBHOOK_PATH,
+    start_webhook(dispatcher=dp, webhook_path=_WEBHOOK_PATH,
                   on_startup=on_startup, on_shutdown=on_shutdown,
                   host=_WEBAPP_HOST, port=_WEBAPP_PORT)
