@@ -1,4 +1,4 @@
-mport logging
+import logging
 import os
 from aiogram import Bot, types, md
 from aiogram.contrib.middlewares.logging import LoggingMiddleware
